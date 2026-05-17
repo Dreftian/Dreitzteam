@@ -42,8 +42,8 @@ https://github.com/Dreftian/Dreitzteam/releases/latest
 Los instaladores se generan en:
 
 ```powershell
-Dreitz\Programa\dist\Dreitz-Setup-1.0.1.exe
-Keys\Programa\dist\Dreitz Keys-Setup-1.0.1.exe
+Dreitz\Programa\dist\Dreitz-Setup-1.0.2.exe
+Keys\Programa\dist\Dreitz Keys-Setup-1.0.2.exe
 ```
 
 ## Desarrollo
@@ -134,11 +134,11 @@ npm run build:website
 Despues se crea un release en GitHub con:
 
 ```text
-Dreitz-Setup-1.0.1.exe
-Dreitz-Setup-1.0.1.exe.blockmap
+Dreitz-Setup-1.0.2.exe
+Dreitz-Setup-1.0.2.exe.blockmap
 latest.yml
-Dreitz Keys-Setup-1.0.1.exe
-Dreitz Keys-Setup-1.0.1.exe.blockmap
+Dreitz Keys-Setup-1.0.2.exe
+Dreitz Keys-Setup-1.0.2.exe.blockmap
 ```
 
 ## Licencia

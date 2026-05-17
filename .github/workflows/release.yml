@@ -30,8 +30,6 @@ jobs:
       - name: Build installer
         working-directory: Dreitz/Programa
         run: npm run build:win -- --publish never
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         uses: softprops/action-gh-release@v2
         with:
@@ -61,8 +59,6 @@ jobs:
       - name: Build installer
         working-directory: Keys/Programa
         run: npm run build:win -- --publish never
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         uses: softprops/action-gh-release@v2
         with:
