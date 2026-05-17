@@ -1,0 +1,44 @@
+appId: com.dreitzteam.keys
+productName: Dreitz Keys
+copyright: Copyright (c) 2026 Dreitzteam
+asar: true
+directories:
+  output: dist
+  buildResources: build
+files:
+  - "out/**/*"
+  - "package.json"
+extraResources:
+  - from: build/icon.ico
+    to: icon.ico
+  - from: build/tray.ico
+    to: tray.ico
+extraMetadata:
+  main: out/main/index.js
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: ${productName}-Setup-${version}.${ext}
+  signAndEditExecutable: false
+nsis:
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  selectPerMachineByDefault: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Dreitz Keys
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  installerHeader: build/installerHeader.bmp
+  installerSidebar: build/installerSidebar.bmp
+  uninstallerSidebar: build/installerSidebar.bmp
+  language: '3082'
+  warningsAsErrors: false
+  runAfterFinish: true
+  menuCategory: "Dreitzteam"
+  include: build/installer.nsh

@@ -1,0 +1,32 @@
+node_modules/
+out/
+dist/
+.DS_Store
+*.log
+
+# Credenciales locales de InsForge (NO commitear)
+**/.insforge/project.json
+
+# Database local de SQLite
+**/dreitzteam.db
+**/dreitzteam.db-journal
+**/dreitzteam.db-wal
+**/dreitzteam.db-shm
+
+# Variables de entorno
+.env
+.env.local
+.env*.local
+
+# Imágenes generadas por build-icon (se regeneran al build)
+**/build/icon.ico
+**/build/icon-256.png
+
+# Skills auto-instaladas por @insforge/cli
+.claude/
+.cursor/
+.windsurf/
+USAR/
+
+# Builds temporales
+**/dist/win-unpacked/

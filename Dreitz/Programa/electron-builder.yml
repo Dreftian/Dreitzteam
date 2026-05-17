@@ -1,0 +1,60 @@
+appId: com.dreitzteam.dreitz
+productName: Dreitz
+copyright: Copyright (c) 2026 Dreitzteam
+asar: true
+directories:
+  output: dist
+  buildResources: build
+files:
+  - "out/**/*"
+  - "package.json"
+extraResources:
+  - from: build/icon.ico
+    to: icon.ico
+  - from: build/tray.ico
+    to: tray.ico
+extraMetadata:
+  main: out/main/index.js
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: ${productName}-Setup-${version}.${ext}
+  # Sin certificado de code-signing (~$200/año). Esto evita la descarga del
+  # winCodeSign cache que necesita symlinks (requiere admin/Dev Mode). El .exe
+  # sale sin firma — Windows Defender SmartScreen mostrará advertencia, los
+  # usuarios click "Más info → Ejecutar de todas formas".
+  signAndEditExecutable: false
+nsis:
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  selectPerMachineByDefault: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Dreitz
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  # Banners custom estilo OperaGX (NSIS Modern UI)
+  installerHeader: build/installerHeader.bmp        # 150x57, top de páginas internas
+  installerSidebar: build/installerSidebar.bmp      # 164x314, lado welcome/finish
+  uninstallerSidebar: build/installerSidebar.bmp
+  # Texto de instalación en español
+  language: '3082'                                  # es-ES
+  # Welcome page con bullet points de features
+  warningsAsErrors: false
+  # Permite arrastrar accesos directos a la barra de tareas
+  runAfterFinish: true
+  menuCategory: "Dreitzteam"
+  # NSIS extra script para look más oscuro
+  include: build/installer.nsh
+# Auto-update vía GitHub Releases. Después de cada build:win, el .exe + latest.yml
+# se suben con `gh release create ...` y los clientes ya instalados los detectan.
+publish:
+  - provider: github
+    owner: Dreftian
+    repo: Dreitzteam
+    releaseType: release

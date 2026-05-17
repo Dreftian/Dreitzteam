@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <title>Dreitz · Tu nueva forma de jugar</title>
+    <meta name="description" content="Dreitz es la tienda de juegos digital de Dreitzteam. Catálogo curado, precios justos y biblioteca personal." />
+    <meta name="author" content="Dreitzteam" />
+    <meta name="keywords" content="dreitz, tienda de juegos, launcher, gaming, steam alternative, dreitzteam" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/tian.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph (Facebook, LinkedIn, Discord) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dreitz.dev/" />
+    <meta property="og:title" content="Dreitz · Tu nueva forma de jugar" />
+    <meta property="og:description" content="Tienda de juegos digital con catálogo curado, precios justos y biblioteca personal." />
+    <meta property="og:image" content="https://dreitz.dev/tian.png" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dreitz · Tu nueva forma de jugar" />
+    <meta name="twitter:description" content="Tienda de juegos digital de Dreitzteam." />
+    <meta name="twitter:image" content="https://dreitz.dev/tian.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://dreitz.dev/" />
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script type="module" crossorigin src="/assets/index.DGhuF2cz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index.uU3X1j2-.css">
+  </head>
+  <body class="bg-[#0a0e1a] text-white antialiased">
+    <div id="root"></div>
+    <script>
+      // Registro del Service Worker — landing offline-capable.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => { /* silent fail en dev */ });
+        });
+      }
+    </script>
+  </body>
+</html>

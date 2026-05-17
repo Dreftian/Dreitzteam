@@ -1,0 +1,3 @@
+# Netlify SPA fallback — cualquier ruta desconocida sirve index.html
+# (no rompemos refresh en /features o /download).
+/*    /index.html   200

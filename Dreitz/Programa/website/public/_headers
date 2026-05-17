@@ -1,0 +1,23 @@
+# Netlify headers config — aplicado por Netlify al servir el sitio.
+# Archivos con hash en el filename son inmutables → cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML: nunca cachear (siempre revalidar para entregar el último build)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Favicons y manifest: 1 día
+/favicon.ico
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+
+# Security headers (best practice)
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

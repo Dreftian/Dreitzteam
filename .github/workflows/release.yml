@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-dreitz:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Dreitz/Programa/package-lock.json
+      - name: Install deps
+        working-directory: Dreitz/Programa
+        run: npm ci
+      - name: Build icon
+        working-directory: Dreitz/Programa
+        run: npm run build:icon
+      - name: Build installer art
+        working-directory: Dreitz/Programa
+        run: npm run build:installer-art
+      - name: Build installer
+        working-directory: Dreitz/Programa
+        run: npm run build:win -- --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Dreitz/Programa/dist/Dreitz-Setup-*.exe
+            Dreitz/Programa/dist/Dreitz-Setup-*.exe.blockmap
+            Dreitz/Programa/dist/latest.yml
+
+  build-keys:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Keys/Programa/package-lock.json
+      - name: Install deps
+        working-directory: Keys/Programa
+        run: npm ci
+      - name: Build icon
+        working-directory: Keys/Programa
+        run: npm run build:icon
+      - name: Build installer art
+        working-directory: Keys/Programa
+        run: npm run build:installer-art
+      - name: Build installer
+        working-directory: Keys/Programa
+        run: npm run build:win -- --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Keys/Programa/dist/Dreitz Keys-Setup-*.exe
+            Keys/Programa/dist/Dreitz Keys-Setup-*.exe.blockmap

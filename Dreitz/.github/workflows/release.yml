@@ -1,0 +1,59 @@
+name: Release
+
+# Trigger: push de un tag tipo `v1.0.0`, `v1.0.1`, etc.
+# Crea un GitHub Release con el installer adjunto + latest.yml para auto-update.
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: Programa
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Programa/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build icon
+        run: npm run build:icon
+
+      - name: Build website
+        run: npm run build:website
+
+      - name: Build & package Windows installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:win
+
+      - name: Upload artifacts to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Programa/dist/Dreitz-Setup-*.exe
+            Programa/dist/latest.yml
+            Programa/dist/*.blockmap
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Deploy website estático a GitHub Pages (opcional — comentar si no aplica)
+      - name: Deploy Website to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Website
+          force_orphan: true

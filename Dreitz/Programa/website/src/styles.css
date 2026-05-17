@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html, body { font-family: 'Inter', 'Segoe UI Variable', system-ui, sans-serif; }
+body { background: #0a0612; color: white; }
+
+html { scroll-behavior: smooth; }
+
+/* Shimmer text — gradient arcoíris animado en el wordmark "Dreitz" */
+.shimmer-text {
+  background: linear-gradient(90deg, #ff0080, #ff8c00, #ffd500, #00ff95, #00d4ff, #6e00ff, #ff0080);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Skeleton/placeholder shimmer — sweep horizontal */
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-sweep 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Mesh background blobs — flotan suavemente */
+.animate-mesh-1 { animation: mesh-1 22s ease-in-out infinite; }
+.animate-mesh-2 { animation: mesh-2 28s ease-in-out infinite; }
+.animate-mesh-3 { animation: mesh-3 24s ease-in-out infinite; }
+
+@keyframes mesh-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.1); }
+}
+@keyframes mesh-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -30px) scale(0.95); }
+}
+@keyframes mesh-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -60px) scale(1.05); }
+}
+
+/* Scrollbar custom matching brand */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0612; }
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 255, 0.35);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 255, 0.55);
+}
+
+/* Respeta reduce-motion: deshabilita todas las animaciones de adorno */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer, .animate-mesh-1, .animate-mesh-2, .animate-mesh-3, .shimmer-text {
+    animation: none !important;
+  }
+}
+
+/* FadeIn para tabs del LivePreview */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse-glow para CTAs */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 255, 0.5); }
+  50% { box-shadow: 0 0 32px 8px rgba(168, 85, 255, 0.3); }
+}
+.pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* Float-y para iconos hero */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+/* Reveal-on-scroll — IntersectionObserver toggle la clase `.is-visible`.
+   Estado inicial invisible/abajo; al entrar al viewport sube y aparece. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Accordion smooth expand */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faq-content.open { grid-template-rows: 1fr; }
+.faq-content > div { overflow: hidden; }
+
+/* Step pulse — para el círculo numérico de "Cómo funciona" */
+@keyframes step-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(103, 232, 249, 0.5); }
+  50% { box-shadow: 0 0 24px 6px rgba(103, 232, 249, 0.25); }
+}
+.step-pulse { animation: step-pulse 2.4s ease-in-out infinite; }
+
+/* Counter animation — para los stats del Hero */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.count-up { animation: count-up 0.6s ease-out backwards; }

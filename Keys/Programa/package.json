@@ -1,0 +1,51 @@
+{
+  "name": "dreitz-keys",
+  "version": "1.0.1",
+  "description": "Keys - Panel administrativo de Dreitzteam",
+  "main": "out/main/index.js",
+  "author": "Dreitzteam",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "build:win": "npm run build && electron-builder --win",
+    "build:icon": "node scripts/build-icon.mjs",
+    "build:installer-art": "node scripts/build-installer-art.mjs",
+    "build:all": "npm run build:icon && npm run build:installer-art && npm run build:win",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.3.0",
+    "electron-log": "^5.4.3",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.460.0",
+    "otplib": "^12.0.1",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "recharts": "^3.8.1",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.7.4",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.7",
+    "electron-vite": "^2.3.0",
+    "jimp": "^1.6.1",
+    "png-to-ico": "^2.1.8",
+    "postcss": "^8.4.47",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
+  }
+}
