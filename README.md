@@ -137,8 +137,8 @@ Despues se crea un release en GitHub con:
 Dreitz-Setup-1.0.2.exe
 Dreitz-Setup-1.0.2.exe.blockmap
 latest.yml
-Dreitz Keys-Setup-1.0.2.exe
-Dreitz Keys-Setup-1.0.2.exe.blockmap
+Dreitz.Keys-Setup-1.0.2.exe
+Dreitz.Keys-Setup-1.0.2.exe.blockmap
 ```
 
 ## Licencia
